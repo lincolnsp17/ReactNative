@@ -17,7 +17,7 @@ export function Welcome(){
                 Não esqueça mais de regar suas platnas.
                 Nós cuidamos de lembrar você sempre que precisar.
             </Text>
-            <TouchableOpacity style={styles.button} activeOpacity={0.8}>
+            <TouchableOpacity style={styles.button} activeOpacity={0.7}>
                 <Text style={styles.buttonText}>
                         >
                 </Text>
