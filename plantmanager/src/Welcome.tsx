@@ -1,30 +1,32 @@
 import React, {useState} from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar, Platform } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar, Platform, Dimensions, } from 'react-native';
 import wateringImg from './assetsload/watering.png';
+import {Feather} from '@expo/vector-icons';
 import colors from '../styles/colors';
 import { Button } from './components/button';
+import fonts from '../styles/fonts';
+import { processFontFamily } from 'expo-font';
 
 export function Welcome(){
-    const {visible, setVisible} = useState(false);
 
-    function handleVisibility(){
-        setVisible(false);
-    }
+// o "visible &&" é a condição que se estiver true, a imagem vai aparecer
     return(
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>
                 Gerencie {'\n'}
-                 suas plantas {'\n'}
-                 de forma fácil
+                 suas plantas de{'\n'}
+                  forma fácil
             </Text>
 
-            <Image source={wateringImg} style={styles.image}/>
+            <Image source={wateringImg} style={styles.image} resizeMode="contain"/>
+            
             <Text style={styles.subtitle}>
-                Não esqueça mais de regar suas platnas.
+                Não esqueça mais de regar suas plantas.
                 Nós cuidamos de lembrar você sempre que precisar.
             </Text>
-        <Button title ="Mostrar imagem" onPress={}/>
-        <Button title ="Ocultar imagem"/>
+        <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+                 <Feather name="chevron-right" style={styles.buttonIcon}/>
+        </TouchableOpacity>
         </SafeAreaView>
     )
 }
@@ -41,18 +43,47 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         color: colors.heading,
-        marginTop:38
+        marginTop:38,
+        fontFamily: fonts.heading,
+        lineHeight: 38,
     },
     subtitle:{
         textAlign:'center',
         fontSize:18,
         paddingHorizontal:20,
-        color: colors.heading
+        color: colors.heading,
+        processFontFamily: fonts.text,
     },
 
     image: {
-        width: 292,
-        height: 294,
+        height: Dimensions.get('window').width * 0.7
+    },
+    button: {
+        backgroundColor: colors.green,
+        justifyContent: 'center',
+        alignItems:'center',
+        borderRadius:16,
+        marginBottom:10,
+        height: 56,
+        width:56,
+    },
+
+    buttonIcon: {
+        color: colors.white,
+        fontSize:24,
     },
 
 })
+
+
+    /*
+    const [visible, setVisible] = useState(false);
+
+    function handleVisibility(){
+        setVisible(true);
+    }
+
+    function handleInvisibility(){
+        setVisible(false);
+    }
+    */
