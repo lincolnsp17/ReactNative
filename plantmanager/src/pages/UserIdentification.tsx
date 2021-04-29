@@ -1,28 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
-import {StyleSheet, SafeAreaView, Text, TextInput} from 'react-native';
-import colors from '../../styles/colors';
-import fonts from '../../styles/fonts';
-import {Button} from '../components/Button';
+import {StyleSheet, SafeAreaView, Text, TextInput, KeyboardAvoidingView} from 'react-native';
+import colors from '../styles/colors';
+import fonts from '../styles/fonts';
+import {Button} from '../components/button';
 
 export function UserIdentification(){
+    const [isFocused, setIsFocused] = useState(false);
+    const [isFilled, setIsFilled] = useState(false);
+    const [name, setName] = useState<string>();
+
+    function handleInputBlur(){
+        setIsFocused(false);
+        setIsFilled(!!name)
+    }
+    
+    function handleInputFocus(){
+        setIsFocused(true);
+    }
+
+    function handleInputChange(value: string){
+        setIsFilled( !!value);
+        setName(value);
+    }
+
     return(
         <SafeAreaView style={styles.container}>
-            <View style = {styles.content}>
-                <View style = {styles.form}>
-                    <Text style = {styles.emoji}>
-                        😃
-                    </Text>
-                    <Text style={ styles.title}>
-                        Como podemos {'\n'}
-                        Chamar você ?
-                    </Text>
-                    <TextInput style={styles.input} placeholder="Digite um nome" />              
-                        <View style={styles.footer}>
-                            <Button/>
+            
+                <View style = {styles.content}>
+                    <View style = {styles.form}>
+                        <Text style = {styles.emoji}>
+                            { isFilled ? '😉' : '😃' }
+                        </Text>
+                        <Text style={ styles.title}>
+                            Como podemos {'\n'}
+                            Chamar você ?
+                        </Text>
+                        <TextInput style={[styles.input,
+                                   (isFocused || isFocused) && {borderColor: colors.green}]
+                        } placeholder="Digite um nome" onBlur={handleInputBlur} onFocus={handleInputFocus} onChangeText={handleInputChange} />              
+                            <View style={styles.footer}>
+                                <Button/>
+                            </View>
                         </View>
                     </View>
-                </View>
         </SafeAreaView>
     )
 }

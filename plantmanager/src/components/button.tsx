@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, TouchableOpacityProps, View } from 'react-native';
-import colors from '../../styles/colors';
-import fonts from '../../styles/fonts';
+import colors from '../styles/colors';
+import fonts from '../styles/fonts';
 
 //parte de propriedade, aonde pode passar o conteudo de um "botão" (neste caso)
 interface ButtonProps extends TouchableOpacityProps{
@@ -13,7 +13,7 @@ export function Button(){
     return(
 
             <TouchableOpacity style={styles.container}>
-                <Text style={styles.text}>
+                <Text style = {styles.text}>
                     Confirmar
                 </Text>
             </TouchableOpacity>
