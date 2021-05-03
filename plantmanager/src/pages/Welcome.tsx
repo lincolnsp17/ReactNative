@@ -1,13 +1,22 @@
 import React, {useState} from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView, StatusBar, Platform, Dimensions, } from 'react-native';
-import wateringImg from './assetsload/watering.png';
+import wateringImg from '../assetsload/watering.png';
 import {Feather} from '@expo/vector-icons';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { processFontFamily } from 'expo-font';
+import { useNavigation } from '@react-navigation/core';
+
+
+
 
 export function Welcome(){
 
+
+    const navigation = useNavigation();
+    function handleStart(){
+        navigation.navigate('UserIdentification')
+    }
 // o "visible &&" é a condição que se estiver true, a imagem vai aparecer
 // em Safe vc não consegue utilizar padding 
 
@@ -27,7 +36,7 @@ export function Welcome(){
                      cuidamos de lembrar você sempre
                       que precisar.
                 </Text>
-                <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+                <TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={handleStart}>
                 <Feather name="chevron-right" style={styles.buttonIcon}/>
                 </TouchableOpacity>
             </View>

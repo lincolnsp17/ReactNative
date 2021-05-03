@@ -4,17 +4,17 @@ import { TouchableOpacity, StyleSheet, Text, TouchableOpacityProps, View } from 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
-//parte de propriedade, aonde pode passar o conteudo de um "botão" (neste caso)
-interface ButtonProps extends TouchableOpacityProps{
+
+// vamos TIPAR o botão para que ele consiga usar um onpress dentro do "button"
+interface ButtonProps extends TouchableOpacityProps {
     title: string;
 }
-
-export function Button(){
+export function Button({ title, ...rest }: ButtonProps){
     return(
 
-            <TouchableOpacity style={styles.container}>
+            <TouchableOpacity style={styles.container} { ... rest}>
                 <Text style = {styles.text}>
-                    Confirmar
+                    {title}
                 </Text>
             </TouchableOpacity>
 )
